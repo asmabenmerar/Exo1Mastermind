@@ -35,3 +35,27 @@ def get_position_user():
 
         # Si tout est valide, on retourne la combinaison sous forme de liste
         return list(saisie_uti)
+
+
+#Etape 4 : Vérification de la Proposition
+def verifier_proposition(proposition,solution):
+    # compter les biens placés
+
+    bien_placee = sum([1 for index in range (combin_length) if proposition[index] == solution[index]])
+
+    # identifier les mal placés
+    proposition_mal_placee = []
+    solution_mal_placee = []
+
+    for index in range (combin_length):
+        if proposition[index] != solution[index]:
+            proposition_mal_placee.append(proposition[index])
+            solution_mal_placee.append(solution[index])
+
+    # calculer les mal placés
+    mal_placee = 0
+    for color in proposition_mal_placee :
+        if color in solution_mal_placee:
+            mal_placee +=1
+            solution_mal_placee.remove(color) # retirer l'element de la solution pour eviter de le compter flsr fois
+    return bien_placee, mal_placee
