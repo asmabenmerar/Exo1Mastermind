@@ -59,3 +59,71 @@ def verifier_proposition(proposition,solution):
             mal_placee +=1
             solution_mal_placee.remove(color) # retirer l'element de la solution pour eviter de le compter flsr fois
     return bien_placee, mal_placee
+
+
+
+
+    #Etape 5 et 6
+
+    # fonction principale de jeu
+
+def jeu_mastermind():
+# initialiser le jeu
+    secret_combination = combinaison_secrete()
+    tentative_restante = nmbr_tentative
+    victoire = False
+
+    # instruction de jeu
+    print(" Bienvenue dans le jeu Mastermind")
+    print("Le but est de deviner une combinaison secréte de couleurs.")
+    print(f"Vous devez deviner une combinaison de {combin_length} parmis les suivantes: {', '.join(colors)}. ")
+    print(f"Chaque lettre repésente une couleur parmis celle listées")
+    print(f"Vous avez {tentative_restante} tentative pour trouvez la bonne combinaison.")
+
+#boucle (tant que le joueur n'a pas gagné et il reste des tentatives)
+    while tentative_restante > 0 and not victoire :
+        print(f"\n Il vous reste {tentative_restante} tentatives.")
+
+        #Récupérer la proposition de l'utilisateur
+        player_guess = get_position_user()
+        print(f"Votre proposition : {player_guess}")
+
+        #verifier de la proposition
+        bien_placee, mal_placee = verifier_proposition(player_guess,secret_combination)
+
+        # afficher les resultats
+        print(f"Proposition: {''.join( player_guess)}")
+        print(f"Bien placés:{bien_placee},Mal placés: {mal_placee}")
+
+        #indication visuelles
+        print("Indications:"+"*"* bien_placee +"-"* mal_placee)
+
+
+        # verification de la victoire
+        if bien_placee == combin_length:
+             victoire = True
+             print(f"Felicitation! Vous avez trouvé la bonne combinaison: {secret_combination}")
+        else:
+            tentative_restante -= 1
+
+    #Gestion de fin de partie
+    if not victoire:
+        print(f"\n Dommage!Vous avez epuisez toutes les tentatives.la combinaison secréte était{secret_combination}. ")
+        print("Essayer à nouveau pour ameliorer la stratégie")
+
+
+
+
+
+
+  
+
+if __name__ == "__main__":
+   # Execution de jeu
+   jeu_mastermind()
+
+
+
+
+
+    
