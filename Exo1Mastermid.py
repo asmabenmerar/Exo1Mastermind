@@ -21,18 +21,17 @@ def combinaison_secrete():
 def get_position_user():
     while True:
         # Demande la saisie de l'utilisateur et la convertit en majuscules
-        a = input(f"Entrez votre combinaison ({combin_length} lettres parmi {', '.join(colors)}): ").upper()
+        saisie_uti = input(f"Entrez votre combinaison ({combin_length} lettres parmi {', '.join(colors)}): ").upper()
 
         # Vérification de la longueur
-        if len(a) != combin_length:
+        if len(saisie_uti) != combin_length:
             print(f"Erreur: Vous devez entrer exactement {combin_length} lettres.")
             continue  # Demande à nouveau la saisie
 
         # Vérification des caractères valides
-        if not all(color in colors for color in a):
+        if not all(color in colors for color in saisie_uti):
             print(f"Erreur: Votre combinaison ne doit contenir que les lettres parmi {', '.join(colors)}.")
             continue  # Demande à nouveau la saisie
 
         # Si tout est valide, on retourne la combinaison sous forme de liste
-        return list(a)
-        
+        return list(saisie_uti)
